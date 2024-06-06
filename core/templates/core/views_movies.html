@@ -1,0 +1,13 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+   <div style="margin-top: 300px;">{{ movies.name }}</div>
+   <img src="{{ movies.imageURL }}" alt="{{ movies.name }}" />
+   <video width="640" height="480" controls>
+       <source src="{{ movies.video_file.url }}" type="video/mp4">
+       {% if vtt_subtitle_url %}
+           <track src="{{ vtt_subtitle_url }}" kind="subtitles" srclang="en" label="English">
+       {% endif %}
+       Your browser does not support the video tag.
+   </video>
+{% endblock %}

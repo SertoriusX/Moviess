@@ -1,0 +1,81 @@
+{% load static %}
+
+<div class="movies-heading">
+    <h2>Movies</h2>
+</div>
+{% if user.is_authenticated %}
+{% if user.is_admin %}
+<section class="container" id="movies-list">
+
+    <!--box-1------------------------>
+    {% for movie in  admin_movies %}
+      
+    <div class="movies-box">
+        <!--img------------>
+        <div class="movies-img">
+            <div class="quality">HDRip</div>
+            <a href="{%url 'admin_views_movies' movie.id%}">
+
+            <img src="{{ movie.imageURL }}" />
+        </a>
+
+        </div>ssssssssssssssss
+        <!--text--------->
+        <a href="#">
+           {{movie.name}} | HDRip 1080p HD
+        </a>
+        <a href="{% url 'admin_update_movies' movie.id %}" class="edit-button">Edit</a>
+        <a href="{% url 'admin_delete_movies' movie.id %}" class="delete-button">Delete</a>
+    </div>
+    {% endfor %}
+
+
+    <div  class="pagination">
+        <div style="color: black;" class="prev">Prev</div>
+        <div style="color: black;" class="page">Page <span class="page-num"></span></div>
+        <div style="color: black;" class="next">Next</div>
+    </div>
+</section>
+{% elif user.is_user %}
+<section class="container" id="movies-list">
+
+    <!--box-1------------------------>
+    {% for movie in  admin_movies %}
+      
+    <div class="movies-box">
+        <!--img------------>
+        <div class="movies-img">
+            <div class="quality">HDRip</div>
+            <a href="{%url 'views_movies' movie.id%}">
+
+            <img src="{{ movie.imageURL }}" />
+        </a>
+
+        </div>
+        <!--text--------->
+        <a href="#">
+           {{movie.name}} | HDRip 1080p HD
+        </a>
+      
+    </div>
+    {% endfor %}
+
+
+    <div  class="pagination">
+        <div style="color: black;" class="prev">Prev</div>
+        <div style="color: black;" class="page">Page <span class="page-num"></span></div>
+        <div style="color: black;" class="next">Next</div>
+    </div>
+
+</section>
+
+
+{%else%}
+
+
+{% endif %}
+<!-- Common content for authenticated users -->
+{% else %}
+ 
+{% endif %}
+

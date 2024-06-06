@@ -1,0 +1,10 @@
+{% extends "core/base.html" %}
+{% block content %}
+  <form style="margin-top: 300px;" action="" method="post">
+    {% csrf_token %}
+    {{ user_form.as_p }}
+    {{ profile_form.as_p }}
+
+    <button type="submit">Submit</button>
+  </form>
+{% endblock content %}

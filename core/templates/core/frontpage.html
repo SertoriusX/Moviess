@@ -1,0 +1,17 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+{% load static %}
+
+<section id="main">
+    <!--showcase----------------------->
+    {% include 'core/showcase.html' %}
+<!--latest-movies---------------------->
+{% include 'core/lastesmovie.html' %}
+
+<!--movies---------------------------->
+{% include 'core/movies.html' %}
+
+<!--btns--------------->
+
+{% endblock content %}

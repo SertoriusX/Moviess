@@ -1,0 +1,117 @@
+{% load static %}
+
+<style> .edit-button {
+    display: inline-block;
+    background-color: blue; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-left: 30px;
+
+}
+.delete-button {
+    display: inline-block;
+    background-color: Red; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+  
+}
+.edit-button:hover {
+    background-color: #45a049; /* Darker Green */
+}
+</style>
+
+
+{% if user.is_authenticated %}
+{% if user.is_admin %}
+<section id="latest">
+    <h2 class="latest-heading">Latest Movies</h2>
+    <!--slider------------------->
+    <ul id="autoWidth2" class="cs-hidden">
+        <!--slide-box-1------------------>            {% for lastmovies in admin_last_movies  %}
+
+        <li class="item-a">
+            <div class="latest-box">
+                <!--img-------->
+                <div class="latest-b-img">
+                    <a href="{%url 'admin_views_lastmovies' lastmovies.id%}">
+
+
+                        <img src="{{ lastmovies.imageURL }}" >                        </a>
+                </div>
+                <!--text---------->
+                <div class="latest-b-text">
+                    <strong>{{lastmovies.name}}</strong>
+                
+                </div>
+            </div>
+            <a href="{% url 'admin_update_lastmovies' lastmovies.id %}" class="edit-button">Edit</a>
+            <a href="{% url 'admin_delete_lastmovies' lastmovies.id %}" class="delete-button">Delete</a>
+            
+        </li>
+       
+        {% endfor %}
+
+    </ul>
+</section>
+{% elif user.is_user %}
+
+
+<section id="latest">
+    <h2 class="latest-heading">Latest Movies</h2>
+    <!--slider------------------->
+    <ul id="autoWidth2" class="cs-hidden">
+        <!--slide-box-1------------------>            {% for lastmovies in admin_last_movies  %}
+
+        <li class="item-a">
+            <div class="latest-box">
+                <!--img-------->
+                <div class="latest-b-img">
+                    <a href="{%url 'views_lastmovies' lastmovies.id%}">
+
+                        <img src="{{ lastmovies.imageURL }}" >                    </a>
+                </div>
+                <!--text---------->
+                <div class="latest-b-text">
+                    <strong>Kin 2018</strong>
+                    <p>Action Movie</p>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+
+    </ul>
+</section>
+
+
+
+
+{%else%}
+
+
+{% endif %}
+<!-- Common content for authenticated users -->
+{% else %}
+ 
+{% endif %}
+
+
+
+
